@@ -9,6 +9,8 @@ const config = require('../config').development;
 const host = process.env.HOST;
 const port = process.env.PORT && number(process.env.PORT);
 
+const isMock = process.env.DATA_SOURCE === 'mock'
+
 module.exports = merge(baseWebpackConfig, {
   mode: 'development',
   devtool: 'inline-source-map',
@@ -38,8 +40,8 @@ module.exports = merge(baseWebpackConfig, {
     publicPath: config.assetsPublicPath,
     proxy: config.proxyTable,
     quiet: true,
-    watchOptions: { poll: config.poll }
-    // before: isMock && require('../mock')
+    watchOptions: { poll: config.poll },
+    before: isMock && require('../mock')
   },
   plugins: [
     new webpack.DefinePlugin({
