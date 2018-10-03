@@ -1,7 +1,7 @@
 const chalk = require('chalk')
 const msgPath = process.env.HUSKY_GIT_PARAMS
 const msg = require('fs').readFileSync(msgPath, 'utf-8').trim()
-console.log(msg);
+
 const commitRE = /^(revert: )?(WIP|feat|fix|refactor|docs|test|chore|style|types|pref|revert)(\(.+\))?: .{1,50}/
 
 if (!commitRE.test(msg)) {
