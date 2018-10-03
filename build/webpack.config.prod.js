@@ -13,10 +13,6 @@ const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-const extractPages = require('../scripts/extract-pages');
-
-const { htmlConfList, entries } = extractPages('src/pages/*/main.tsx', { polyfill: 'babel-polyfill' })
-
 function resolve(dir) {
   return path.join(__dirname, '..', dir);
 }
@@ -31,7 +27,10 @@ const nameLength = 4;
 module.exports = merge(baseWebpackConfig, {
   mode: 'production',
   devtool: config.devtool,
-  entry: entries,
+  entry: [
+    'babel-polyfill',
+    './src/index.tsx'
+  ],
   output: {
     path: config.assetsRoot,
     filename: assetsPath('js/[name].[chunkhash:8].js'),
@@ -45,19 +44,18 @@ module.exports = merge(baseWebpackConfig, {
       filename: assetsPath('css/[name].[contenthash:8].css'),
       chunkFilename: assetsPath('css/[name].[contenthash:8].css')
     }),
-    ...htmlConfList,
-    // new HtmlWebpackPlugin({
-    //   filename: config.index,
-    //   template: path.resolve(__dirname, '../src/index.html'),
-    //   inject: true,
-    //   title: 'Console',
-    //   path: config.assetsPublicPath + config.assetsSubDirectory,
-    //   minify: {
-    //     removeComments: true,
-    //     collapseWhitespace: true,
-    //     removeAttributeQuotes: true
-    //   }
-    // }),
+    new HtmlWebpackPlugin({
+      filename: config.index,
+      template: path.resolve(__dirname, '../src/index.html'),
+      inject: true,
+      title: 'Console',
+      path: config.assetsPublicPath + config.assetsSubDirectory,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+      }
+    }),
     new HtmlWebpackIncludeAssetsPlugin({
       assets: ['dll/vendor.dll.js'],
       append: false,
