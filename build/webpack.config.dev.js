@@ -40,12 +40,12 @@ module.exports = merge(baseWebpackConfig, {
     publicPath: config.assetsPublicPath,
     proxy: config.proxyTable,
     quiet: true,
-    watchOptions: { poll: config.poll },
-    before: isMock && require('../mock')
+    watchOptions: { poll: config.poll }
   },
   plugins: [
     new webpack.DefinePlugin({
-      __IS_DEV__: JSON.stringify(true)
+      'process.env.NODE_ENV': JSON.stringify(true),
+      'process.env.MOCK': JSON.stringify(true)
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
