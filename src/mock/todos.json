@@ -4,7 +4,7 @@
       "id|+1": 0,
       "updateTime": "@datetime('yyyy-MM-dd HH:mm:ss')",
       "content": "@paragraph(1)",
-      "completed": "@boolean"
+      "status": "@status"
     }
   ]
 }
