@@ -12,7 +12,10 @@
       "no-console": false,
       "trailing-comma": false,
       "quotemark": [true, "single", "jsx-double"],
-      "no-namespace": false
+      "no-namespace": false,
+      "member-access": false,
+      "only-arrow-functions": false,
+      "no-var-requires": false
   },
   "rulesDirectory": []
 }
