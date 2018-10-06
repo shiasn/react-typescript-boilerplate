@@ -1,29 +1,28 @@
 import * as React from 'react';
 import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { createBrowserHistory } from 'history';
+import { ConnectedRouter } from 'react-router-redux';
+import { configureStore } from '@/store';
+import App from './App';
+import mock from '@/mock';
 
-render(<div>Init</div>, document.querySelector('#root'));
+import { fetchTodos, watchTodoActions } from '@/store/sagas';
 
-// import * as React from 'react';
-// import { render } from 'react-dom';
-// import { Provider } from 'react-redux';
-// import { createBrowserHistory } from 'history';
-// import { configureStore } from '@/store';
-// import rootSaga from '@/store/sagas';
+const history = createBrowserHistory();
+const store = configureStore(history);
 
-// const history = createBrowserHistory();
-// const { store, runSaga } = configureStore(history);
+if (process.env.MOCK) {
+  mock();
+  store.runSagaTask(watchTodoActions);
+  store.runSagaTask(fetchTodos);
+}
 
-// console.log(rootSaga);
-
-// runSaga(rootSaga);
-
-// function App() {
-//   return <div>asdf</div>;
-// }
-
-// render(
-//   <Provider store={store}>
-//     <App />
-//   </Provider>,
-//   document.querySelector('#root')
-// );
+render(
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <App />
+    </ConnectedRouter>
+  </Provider>,
+  document.querySelector('#root')
+);

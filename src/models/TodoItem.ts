@@ -2,7 +2,7 @@ export interface TodoModel {
   id: number;
   content: string;
   updateTime: string;
-  status: string;
+  status: 'active' | 'completed';
 }
 
 export namespace TodoModel {

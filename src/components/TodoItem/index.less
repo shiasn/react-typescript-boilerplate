@@ -1,0 +1,80 @@
+.todo-item {
+  position: relative;
+  width: 300px;
+  padding-left: 30px;
+  margin: 20px auto;
+  text-align: left;
+  border-bottom: solid 1px #eee;
+
+  p {
+    margin: 0;
+  }
+
+  & > p {
+    font-size: 20px;
+  }
+
+  & > div {
+    p,
+    div {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    p {
+      font-size: 12px;
+    }
+  }
+}
+
+.todo-edit {
+  font-size: 20px;
+  border: solid 1px #ccc;
+  border-radius: 3px;
+}
+
+.button-wrapper {
+  button {
+    padding: 5px 10px;
+    margin: 5px;
+    font-size: 12px;
+    background: #eee;
+    border: none;
+    border-radius: 3px;
+  }
+
+  button:first-child {
+    color: #fff;
+    background: lightsteelblue;
+  }
+
+  button:last-child {
+    color: #fff;
+    background: lightcoral;
+  }
+}
+
+.complete-operator {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  border: solid 2px #ccc;
+  border-radius: 50%;
+
+  &:hover {
+    background: fadeout(lightblue, 50%);
+  }
+}
+
+.completed.todo-item {
+  p {
+    text-decoration: line-through lightcoral;
+  }
+
+  i.complete-operator {
+    background: lightblue;
+  }
+}
