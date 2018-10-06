@@ -1,3 +1,6 @@
+const webpack = require('webpack');
+const env = process.env.NODE_ENV;
+
 module.exports = {
   ident: 'postcss',
   plugins: [
