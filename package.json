@@ -35,7 +35,7 @@
       "git add"
     ]
   },
-  "author": "",
+  "author": "Shiasn <shiasn.ho@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "7.1.2",
