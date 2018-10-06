@@ -80,6 +80,14 @@ module.exports = {
       id: 'happyts',
       threadPool: happyThreadPool,
       loaders: [
+        env === 'development' && {
+          loader: 'babel-loader',
+          options: {
+            plugins: [
+              'react-hot-loader/babel'
+            ]
+          }
+        },
         {
           path: 'ts-loader',
           query: {
@@ -87,7 +95,7 @@ module.exports = {
             happyPackMode: true
           }
         }
-      ],
+      ].filter(Boolean),
     }),
     new HappyPack({
       id: 'happycss',
