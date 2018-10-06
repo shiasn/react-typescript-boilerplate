@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "strict": true,
     "outDir": "./dist/",
     "module": "esnext",
     "target": "es5",
@@ -13,21 +14,25 @@
     "sourceMap": true,
     "allowJs": true,
     "jsx": "react",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "moduleResolution": "node",
     "rootDir": "src",
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
-    "strictNullChecks": true,
+    "strictNullChecks": false,
     "noUnusedLocals": true,
+    "removeComments": true,
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"]
     }
   },
+  // "exclude": ["dist", "build", "node_modules"]
   "include": [
     "./types",
     "./src/**/*",
-    "./node_modules/@types/**/*"
+    "./node_modules/@types"
   ]
 }
